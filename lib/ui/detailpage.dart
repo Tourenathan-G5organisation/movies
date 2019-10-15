@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:movies/model/Actor.dart';
 import 'package:movies/model/Movie.dart';
+import 'widget/movie_detail_header.dart';
 
-class DetailPage extends StatefulWidget {
-  DetailPage({Key key}) : super(key: key);
+class DetailPage extends StatelessWidget {
+  DetailPage() {
+    movie = _createFakeData();
+  }
 
-  @override
-  _DetailPageState createState() => _DetailPageState();
-}
+  Movie movie;
 
-class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Movie Details"),
+        body: SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+         MovieDetailHeader(movie),
+        ],
       ),
-      body: Center(
-        child: Text("Movie details goes here"),
-      ),
-    );
+    ));
   }
 
   Movie _createFakeData() {
     return Movie(
-        bannerUrl: 'images/banner.png',
-        posterUrl: 'images/poster.png',
+        bannerUrl: 'asset/images/banner.jpg',
+        posterUrl: 'asset/images/poster.jpg',
         title: 'Le Blanc d\'Eyenga 2',
         rating: 8.0,
         starRating: 4,
@@ -35,10 +35,10 @@ class _DetailPageState extends State<DetailPage> {
             'Pictures present The Secret Life of Pets, a comedy about '
             'the lives our...',
         photoUrls: [
-          'images/image1.jpg',
-          'images/image2.jpg',
-          'images/image3.jpg',
-          'images/image4.jpg',
+          'asset/images/image1.jpg',
+          'asset/asset/images/image2.jpg',
+          'asset/images/image3.jpg',
+          'asset/images/image4.jpg',
         ],
         actors: [
           Actor(
