@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'movie_detail_arc_banner_image.dart';
 import 'package:movies/model/Movie.dart';
 import 'movie_detail_poster.dart';
+import 'movie_detail_header_text.dart';
 
 class MovieDetailHeader extends StatelessWidget{
 
@@ -27,6 +28,8 @@ class MovieDetailHeader extends StatelessWidget{
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Poster(movie.posterUrl, height: 180.0),
+              SizedBox(width: 16.0),
+              Expanded(child: HeaderText(movie: movie,))
             ],
           ),
         )

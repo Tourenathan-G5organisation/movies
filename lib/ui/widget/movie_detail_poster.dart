@@ -16,7 +16,7 @@ class Poster extends StatelessWidget {
     var width = POSTER_RATIO * height;
     return Material(
       elevation: 2.0,
-      borderRadius: BorderRadius.circular(5.0),
+      borderRadius: BorderRadius.circular(4.0),
       child: Image.asset(
         posterUrl,
         width: width,
