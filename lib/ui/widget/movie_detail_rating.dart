@@ -6,11 +6,11 @@ class Rating extends StatelessWidget {
   final double rating;
   final int starRating;
 
-  Widget _buildRatingBar() {
+  Widget _buildRatingBar(ThemeData theme) {
     var stars = <Widget>[];
 
     for (var i = 1; i <= 5; i++) {
-      var color = i <= starRating ? const Color(0xFFFF5959) : Colors.black12;
+      var color = i <= starRating ? theme.accentColor : Colors.black12;
       var star = Icon(
         Icons.star,
         color: color,
@@ -35,7 +35,7 @@ class Rating extends StatelessWidget {
           rating.toString(),
           style: theme.textTheme.title.copyWith(
             fontWeight: FontWeight.w400,
-            color: const Color(0xFFFF5959),
+            color: theme.accentColor,
           ),
         ),
         SizedBox(height: 4.0),
@@ -50,7 +50,7 @@ class Rating extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _buildRatingBar(),
+        _buildRatingBar(theme),
         Padding(
           padding: const EdgeInsets.only(top: 4.0, left: 4.0),
           child: Text(

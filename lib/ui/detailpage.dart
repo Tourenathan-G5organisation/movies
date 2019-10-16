@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/model/Actor.dart';
 import 'package:movies/model/Movie.dart';
 import 'widget/movie_detail_header.dart';
+import 'widget/movie_detail_story.dart';
 
 class DetailPage extends StatelessWidget {
   DetailPage() {
@@ -17,6 +18,8 @@ class DetailPage extends StatelessWidget {
       child: Column(
         children: <Widget>[
          MovieDetailHeader(movie),
+          Padding(padding: EdgeInsets.all(20.0),
+          child: Storyline(movie.storyline),),
         ],
       ),
     ));
