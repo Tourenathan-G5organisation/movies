@@ -3,6 +3,7 @@ import 'package:movies/model/Actor.dart';
 import 'package:movies/model/Movie.dart';
 import 'widget/movie_detail_header.dart';
 import 'widget/movie_detail_story.dart';
+import 'widget/movie_detail_photo_scroller.dart';
 
 class DetailPage extends StatelessWidget {
   DetailPage() {
@@ -20,6 +21,8 @@ class DetailPage extends StatelessWidget {
          MovieDetailHeader(movie),
           Padding(padding: EdgeInsets.all(20.0),
           child: Storyline(movie.storyline),),
+          PhotoScroller(movie.photoUrls),
+
         ],
       ),
     ));
@@ -39,7 +42,7 @@ class DetailPage extends StatelessWidget {
             'the lives our...',
         photoUrls: [
           'asset/images/image1.jpg',
-          'asset/asset/images/image2.jpg',
+          'asset/images/image2.jpg',
           'asset/images/image3.jpg',
           'asset/images/image4.jpg',
         ],

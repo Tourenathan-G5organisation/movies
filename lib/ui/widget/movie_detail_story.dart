@@ -14,7 +14,7 @@ class Storyline extends StatelessWidget {
       children: [
         Text(
           'Story line',
-          style: textTheme.subhead.copyWith(fontSize: 19.0),
+          style: textTheme.subhead.copyWith(fontSize: 18.0),
         ),
         SizedBox(height: 8.0),
         Text(
