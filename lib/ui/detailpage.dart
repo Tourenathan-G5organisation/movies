@@ -4,6 +4,7 @@ import 'package:movies/model/Movie.dart';
 import 'widget/movie_detail_header.dart';
 import 'widget/movie_detail_story.dart';
 import 'widget/movie_detail_photo_scroller.dart';
+import 'widget/movie_detail_actor_scroller.dart';
 
 class DetailPage extends StatelessWidget {
   DetailPage() {
@@ -22,6 +23,9 @@ class DetailPage extends StatelessWidget {
           Padding(padding: EdgeInsets.all(20.0),
           child: Storyline(movie.storyline),),
           PhotoScroller(movie.photoUrls),
+         SizedBox(height: 20.0),
+          ActorScroller(movie.actors),
+         SizedBox(height: 20.0),
 
         ],
       ),
@@ -49,23 +53,23 @@ class DetailPage extends StatelessWidget {
         actors: [
           Actor(
             name: 'Thierry Ntamack',
-            avatarUrl: 'images/tamack.jpg',
+            avatarUrl: 'asset/images/tamack.jpg',
           ),
           Actor(
             name: 'Aicha Wète Kaprisky',
-            avatarUrl: 'images/aicha.jpg',
+            avatarUrl: 'asset/images/aicha.jpg',
           ),
           Actor(
             name: 'Lucie Memba',
-            avatarUrl: 'images/lucie.jpg',
+            avatarUrl: 'asset/images/lucie.jpg',
           ),
           Actor(
             name: 'Kaline Truong',
-            avatarUrl: 'images/kaline.jpg',
+            avatarUrl: 'asset/images/kaline.jpg',
           ),
           Actor(
             name: 'Jeanne Mbenti',
-            avatarUrl: 'images/jeane.jpg',
+            avatarUrl: 'asset/images/jeane.jpg',
           )
         ]);
   }
