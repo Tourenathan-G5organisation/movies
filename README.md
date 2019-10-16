@@ -1,16 +1,10 @@
 # movies
 
-A new Flutter project.
+A mobile application developed which get its users updated on the lastest top and popular movies
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+The design of this application was gotten from Uplabs and done by [LEON.W on Dribbble](https://www.uplabs.com/posts/movie-interface).
+The Detail page was done following a tutorial from [https://iirokrankka.com](https://iirokrankka.com/2017/09/12/from-design-to-flutter-movie-details-page/)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Feel free to share use or suggest features
