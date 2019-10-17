@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/model/Movie.dart';
+import 'package:movies/ui/detailpage.dart';
 
 class MovieCategory extends StatelessWidget {
   MovieCategory({this.categoryTitle, this.movies});
@@ -55,7 +56,8 @@ class MovieItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var width = POSTER_RATIO * height;
-    return Padding(
+    return GestureDetector(
+      child: Padding(
       padding: const EdgeInsets.only(right: 14.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,6 +98,7 @@ class MovieItem extends StatelessWidget {
               padding: EdgeInsets.only(left: 2.0, top: 2.0)),
         ],
       ),
-    );
+    ),
+    onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(movie: movie,)));},);
   }
 }

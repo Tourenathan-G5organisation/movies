@@ -7,11 +7,9 @@ import 'widget/movie_detail_photo_scroller.dart';
 import 'widget/movie_detail_actor_scroller.dart';
 
 class DetailPage extends StatelessWidget {
-  DetailPage() {
-    movie = _createFakeData();
-  }
+  DetailPage({this.movie});
 
-  Movie movie;
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -32,45 +30,4 @@ class DetailPage extends StatelessWidget {
     ));
   }
 
-  Movie _createFakeData() {
-    return Movie(
-        bannerUrl: 'asset/images/banner.jpg',
-        posterUrl: 'asset/images/poster.jpg',
-        title: 'Le Blanc d\'Eyenga 2',
-        rating: 8.0,
-        starRating: 4,
-        categories: ['Comedy', 'Drame'],
-        storyline: 'For their fifth fully-animated feature-film '
-            'collaboration, Illumination Entertainment and Universal '
-            'Pictures present The Secret Life of Pets, a comedy about '
-            'the lives our...',
-        photoUrls: [
-          'asset/images/image1.jpg',
-          'asset/images/image2.jpg',
-          'asset/images/image3.jpg',
-          'asset/images/image4.jpg',
-        ],
-        actors: [
-          Actor(
-            name: 'Thierry Ntamack',
-            avatarUrl: 'asset/images/tamack.jpg',
-          ),
-          Actor(
-            name: 'Aicha Wète Kaprisky',
-            avatarUrl: 'asset/images/aicha.jpg',
-          ),
-          Actor(
-            name: 'Lucie Memba',
-            avatarUrl: 'asset/images/lucie.jpg',
-          ),
-          Actor(
-            name: 'Kaline Truong',
-            avatarUrl: 'asset/images/kaline.jpg',
-          ),
-          Actor(
-            name: 'Jeanne Mbenti',
-            avatarUrl: 'asset/images/jeane.jpg',
-          )
-        ]);
-  }
 }
