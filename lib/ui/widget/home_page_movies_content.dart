@@ -1,77 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:movies/model/Movie.dart';
 import 'package:movies/model/Actor.dart';
-import 'package:movies/ui/widget/home_page_movies_content.dart';
+import 'package:movies/ui/widget/movie_category.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
-
+class MoviesContent extends StatelessWidget{
+  MoviesContent({Key key}):super(key:key);
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          centerTitle: true,
-          iconTheme: IconThemeData(
-            color: Colors.white,
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.search),
-              tooltip: 'Search',
-              onPressed: () {},
-            ),
-          ],
-        ),
-        body: TabBarView(
+    return SingleChildScrollView(
+      child: Container(
+        color: Colors.grey[100],
+        // alignment: Alignment.center,
+        child: Column(
           children: [
-            MoviesContent(),
-            MoviesContent(),
-            MoviesContent(),
-            Container(
-              color: Colors.black,
+            MovieCategory(
+              categoryTitle: "Popular",
+              movies: _createFakeData(),
             ),
+            SizedBox(height: 10.0,),
+            MovieCategory(
+              categoryTitle: "Top100",
+              movies: _createFakeData(),
+            ),
+            SizedBox(height: 10.0,),
           ],
-          physics: NeverScrollableScrollPhysics(),
-        ),
-        bottomNavigationBar: TabBar(
-          tabs: [
-            Tab(
-              icon: Icon(Icons.movie),
-            ),
-            Tab(
-              icon: Icon(Icons.movie),
-            ),
-            Tab(
-              icon: Icon(Icons.movie),
-            ),
-            Tab(
-              icon: Icon(Icons.movie),
-            ),
-          ],
-          labelColor: Colors.red[800],
-          unselectedLabelColor: Colors.grey[400],
-          indicatorSize: TabBarIndicatorSize.label,
-          indicatorWeight: 2,
-          isScrollable: false,
-          //indicatorPadding: EdgeInsets.all(5.0),
-          indicatorColor: Colors.red[800],
+
         ),
       ),
     );
   }
-
 
   List<Movie> _createFakeData() {
     List<Movie> movies = <Movie>[];
