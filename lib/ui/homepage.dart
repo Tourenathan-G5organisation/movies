@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/model/Movie.dart';
 import 'package:movies/model/Actor.dart';
 import 'package:movies/ui/widget/home_page_movies_content.dart';
+import 'presentation/my_flutter_app_icons.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -48,16 +49,16 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: TabBar(
           tabs: [
             Tab(
-              icon: Icon(Icons.movie),
+              icon: Icon( MyFlutterApp.film),
             ),
             Tab(
-              icon: Icon(Icons.movie),
+              icon: Icon(MyFlutterApp.television),
             ),
             Tab(
-              icon: Icon(Icons.movie),
+              icon: Icon(MyFlutterApp.videocam),
             ),
             Tab(
-              icon: Icon(Icons.movie),
+              icon: Icon(Icons.person_outline, size: 30,),
             ),
           ],
           labelColor: Colors.red[800],
