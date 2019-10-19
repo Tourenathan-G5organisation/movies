@@ -41,9 +41,10 @@ class _HomePageState extends State<HomePage> {
         body: TabBarView(
           children: [
             MoviesContent(),
-            MoviesContent(),
+            Container(child: Center(child: Text('TV programs will appear here', style: Theme.of(context).textTheme.display1.copyWith(fontSize: 20.0),),),),
             MoviesContent(),
             Container(
+              child: Center(child: Text('Popular actors will appear here', style: Theme.of(context).textTheme.display1.copyWith(fontSize: 20.0, color: Colors.white),),),
               color: Colors.black,
             ),
           ],

@@ -3,8 +3,9 @@ import 'package:movies/model/Movie.dart';
 import 'package:movies/model/Actor.dart';
 import 'package:movies/ui/widget/movie_category.dart';
 
-class MoviesContent extends StatelessWidget{
-  MoviesContent({Key key}):super(key:key);
+class MoviesContent extends StatelessWidget {
+  MoviesContent({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -14,17 +15,27 @@ class MoviesContent extends StatelessWidget{
         child: Column(
           children: [
             MovieCategory(
+              categoryTitle: "Top rated",
+              movies: _createFakeData(),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            MovieCategory(
+              categoryTitle: "Now playing",
+              movies: _createFakeData(),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            MovieCategory(
               categoryTitle: "Popular",
               movies: _createFakeData(),
             ),
-            SizedBox(height: 10.0,),
-            MovieCategory(
-              categoryTitle: "Top100",
-              movies: _createFakeData(),
+            SizedBox(
+              height: 10.0,
             ),
-            SizedBox(height: 10.0,),
           ],
-
         ),
       ),
     );
@@ -40,10 +51,10 @@ class MoviesContent extends StatelessWidget{
           rating: 8.0,
           starRating: 4,
           categories: ['Comedy', 'Drame'],
-          storyline: 'For their fifth fully-animated feature-film '
-              'collaboration, Illumination Entertainment and Universal '
-              'Pictures present The Secret Life of Pets, a comedy about '
-              'the lives our...',
+          storyline: 'Le Blanc d\'Eyenga est un film du réalisateur et acteur camerounais, '
+              'Thierry ntamack, qui décrit comment une dame camerounaise veut '
+              'désespérément un homme blanc pour de l\'argent et montre '
+              'comment elle utilise cet argent pour financer le voyage de son...',
           photoUrls: [
             'asset/images/image1.jpg',
             'asset/images/image2.jpg',
