@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     String title = "MOVIE";
     return MaterialApp(
       title: title,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: Colors.black,

@@ -3,6 +3,7 @@ import 'package:movies/model/Movie.dart';
 import 'package:movies/model/Actor.dart';
 import 'package:movies/ui/widget/home_page_movies_content.dart';
 import 'presentation/my_flutter_app_icons.dart';
+import 'package:movies/ui/widget/home_page_data_search.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -31,7 +32,9 @@ class _HomePageState extends State<HomePage> {
             IconButton(
               icon: const Icon(Icons.search),
               tooltip: 'Search',
-              onPressed: () {},
+              onPressed: () {
+                showSearch(context: context, delegate: DataSearch());
+              },
             ),
           ],
         ),
