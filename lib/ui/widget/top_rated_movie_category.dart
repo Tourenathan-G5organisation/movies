@@ -5,10 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:movies/states/top_rated_movies.dart';
 
 class TopRatedMovieCategory extends StatelessWidget {
-  TopRatedMovieCategory({this.categoryTitle, this.movies});
+  TopRatedMovieCategory({this.categoryTitle});
 
   final String categoryTitle;
-  final List<Movie> movies;
   ScrollController _scrollController;
 
   @override

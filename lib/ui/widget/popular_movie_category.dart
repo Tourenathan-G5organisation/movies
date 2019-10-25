@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:movies/model/Movie.dart';
 import 'package:movies/ui/widget/home_page_movie_item.dart';
+import 'package:provider/provider.dart';
+import 'package:movies/states/popular_movies.dart';
 
 class PopularMovieCategory extends StatelessWidget {
-  PopularMovieCategory({this.categoryTitle, this.movies});
+  PopularMovieCategory({this.categoryTitle});
 
   final String categoryTitle;
-  final List<Movie> movies;
+  ScrollController _scrollController;
 
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
+    final popularMovies = Provider.of<PopularMovies>(context, listen: false);
+    _scrollController =
+        ScrollController(initialScrollOffset: 0.0, keepScrollOffset: true);
+    _scrollController.addListener(() {
+      if (_scrollController.offset ==
+          _scrollController.position.maxScrollExtent) {
+        popularMovies.getMoreMovies();
+      }
+    });
     return Material(
       color: Colors.white,
       elevation: 1.0,
@@ -28,16 +39,19 @@ class PopularMovieCategory extends StatelessWidget {
           ),
           SizedBox.fromSize(
             size: const Size.fromHeight(260.0),
-            child: ListView.builder(
-              itemCount: movies.length,
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.only(top: 8.0, left: 10.0),
-              itemBuilder: ((context, i) {
-                return MovieItem(
-                  movie: movies[i],
-                  height: 200.0,
-                );
-              }),
+            child: Consumer<PopularMovies>(
+              builder: (context, popularMovies, _) => ListView.builder(
+                    itemCount: popularMovies.movies.length,
+                    controller: _scrollController,
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.only(top: 8.0, left: 10.0),
+                    itemBuilder: ((context, i) {
+                      return MovieItem(
+                        movie: popularMovies.movies[i],
+                        height: 200.0,
+                      );
+                    }),
+                  ),
             ),
           ),
         ],
@@ -45,4 +59,3 @@ class PopularMovieCategory extends StatelessWidget {
     );
   }
 }
-

@@ -29,21 +29,18 @@ class MoviesContent extends StatelessWidget {
           children: [
             TopRatedMovieCategory(
               categoryTitle: "Top rated",
-              movies: null,
             ),
             SizedBox(
               height: 10.0,
             ),
             NowPlayingMovieCategory(
               categoryTitle: "Now playing",
-              movies: _createFakeData(),
             ),
             SizedBox(
               height: 10.0,
             ),
             PopularMovieCategory(
               categoryTitle: "Popular",
-              movies: _createFakeData(),
             ),
             SizedBox(
               height: 10.0,
