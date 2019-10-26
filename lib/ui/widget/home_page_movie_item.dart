@@ -27,9 +27,12 @@ class MovieItem extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            Padding(
-              child: Text(movie.title),
-              padding: EdgeInsets.only(left: 2.0, top: 5.0),
+            SizedBox(
+              child: Padding(
+                child: RichText(text: TextSpan(text:movie.title, style: TextStyle(color: Colors.black),),overflow: TextOverflow.ellipsis, ),
+                padding: EdgeInsets.only(left: 2.0, top: 5.0),
+              ),
+              width: width,
             ),
             Padding(
                 child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [

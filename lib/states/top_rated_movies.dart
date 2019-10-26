@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:movies/model/Movie.dart';
 import 'package:movies/model/Actor.dart';
+import 'package:movies/api/movie_api_service.dart';
 
 class TopRatedMovies with ChangeNotifier {
-  List<Movie> _movies;
+  List<Movie> _movies; // List of movies to display
+  bool _isLoading = true; // determines if the we are loading movies or not
+  BuildContext _context;
+  int _page = 0;
+  int _maxPage = 1;
+  MovieApiService _movieApiService;
 
-  TopRatedMovies(BuildContext context) {
+  TopRatedMovies(this._context) {
     _movies = [];
-    movies = _createFakeData();
+    _movieApiService = MovieApiService();
+    getMoreMovies();
   }
 
   List<Movie> get movies => _movies;
@@ -18,9 +25,24 @@ class TopRatedMovies with ChangeNotifier {
     notifyListeners();
   }
 
-  void getMoreMovies(){
-    movies = _createFakeData();
+  void getMoreMovies() async {
+    if (_page < _maxPage) {
+      _page++;
+      _isLoading = true;
+      ApiResponse response = await _movieApiService.getTopRatedMovies(_page);
+      print(response.toString());
+      _isLoading = false;
+      if (response.hasResponse) {
+        _maxPage = response.results["total_pages"] ?? _maxPage;
+        List<Movie> loadedMovies = (response.results["results"] as List).map((item) => Movie.fromJson(item)).toList();
+        movies = loadedMovies;
+      } else {
+        if (movies.length == 0) {}
+      }
+    }
   }
+
+  bool isLoading() => _isLoading;
 
   List<Movie> _createFakeData() {
     List<Movie> movies = <Movie>[];
@@ -32,7 +54,8 @@ class TopRatedMovies with ChangeNotifier {
           rating: 8.0,
           starRating: 4,
           categories: ['Comedy', 'Drame'],
-          storyline: 'Le Blanc d\'Eyenga est un film du réalisateur et acteur camerounais, '
+          storyline:
+              'Le Blanc d\'Eyenga est un film du réalisateur et acteur camerounais, '
               'Thierry ntamack, qui décrit comment une dame camerounaise veut '
               'désespérément un homme blanc pour de l\'argent et montre '
               'comment elle utilise cet argent pour financer le voyage de son...',

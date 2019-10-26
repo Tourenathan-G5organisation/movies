@@ -17,8 +17,8 @@ class TopRatedMovieCategory extends StatelessWidget {
     _scrollController =
         ScrollController(initialScrollOffset: 0.0, keepScrollOffset: true);
     _scrollController.addListener(() {
-      if (_scrollController.offset ==
-          _scrollController.position.maxScrollExtent) {
+      if (_scrollController.offset >=
+          _scrollController.position.maxScrollExtent - 200) {
         topRatedMovies.getMoreMovies();
       }
     });
