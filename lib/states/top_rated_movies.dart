@@ -29,6 +29,7 @@ class TopRatedMovies with ChangeNotifier {
     if (_page < _maxPage) {
       _page++;
       _isLoading = true;
+      notifyListeners();
       ApiResponse response = await _movieApiService.getTopRatedMovies(_page);
       print(response.toString());
       _isLoading = false;
@@ -37,7 +38,8 @@ class TopRatedMovies with ChangeNotifier {
         List<Movie> loadedMovies = (response.results["results"] as List).map((item) => Movie.fromJson(item)).toList();
         movies = loadedMovies;
       } else {
-        if (movies.length == 0) {}
+        //if (movies.length == 0) {}
+        notifyListeners();
       }
     }
   }

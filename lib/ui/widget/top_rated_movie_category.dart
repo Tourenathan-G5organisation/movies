@@ -17,8 +17,7 @@ class TopRatedMovieCategory extends StatelessWidget {
     _scrollController =
         ScrollController(initialScrollOffset: 0.0, keepScrollOffset: true);
     _scrollController.addListener(() {
-      if (_scrollController.offset >=
-          _scrollController.position.maxScrollExtent - 200) {
+      if (_scrollController.offset == _scrollController.position.maxScrollExtent ) {
         topRatedMovies.getMoreMovies();
       }
     });
@@ -41,20 +40,31 @@ class TopRatedMovieCategory extends StatelessWidget {
           SizedBox.fromSize(
             size: const Size.fromHeight(260.0),
             child: Consumer<TopRatedMovies>(
-              builder: (context, topRatedMovies, _) => ListView.builder(
-                    itemCount: topRatedMovies.movies.length,
-                    controller: _scrollController,
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.only(top: 8.0, left: 10.0),
-                    itemBuilder: ((context, i) {
+                builder: (context, topRatedMovies, _) {
+                  if(topRatedMovies.movies.isEmpty ){
+                    return  topRatedMovies.isLoading()?
+                    Center(child: CircularProgressIndicator()) : Center(
+                        child: Padding(padding: EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Text("No Item available. Check your internet connection", style: TextStyle(color: Colors.black),)));
+                  }
+                  return ListView.builder(
+                  itemCount: topRatedMovies.movies.length,
+                  controller: _scrollController,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.only(top: 8.0, left: 10.0),
+                  itemBuilder: ((context, i) {
+                    if(topRatedMovies.isLoading() && topRatedMovies.movies.length-1 == i){
+                      return Center(child: CircularProgressIndicator());
+                    }else{
                       return MovieItem(
                         movie: topRatedMovies.movies[i],
                         height: 200.0,
                       );
-                    }),
-                  ),
+                    }
+                  }),
+                );})
             ),
-          ),
+
         ],
       ),
     );
