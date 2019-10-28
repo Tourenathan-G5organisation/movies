@@ -36,8 +36,8 @@ class HeaderText extends StatelessWidget {
           starRating: movie.starRating,
         ),
         SizedBox(height: 12.0),
-        Row( children: _buildCategoryChips(Theme.of(context).textTheme),
-        ),
+        Container(height: 35.0, child: ListView(children: _buildCategoryChips(Theme.of(context).textTheme, ), shrinkWrap: true, scrollDirection: Axis.horizontal,),),
+        //),
       ],
     );
   }

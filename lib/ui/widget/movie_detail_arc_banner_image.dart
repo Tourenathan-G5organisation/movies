@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ArcBannerImage extends StatelessWidget {
   ArcBannerImage(this.imageUrl);
@@ -11,12 +12,13 @@ class ArcBannerImage extends StatelessWidget {
 
     return ClipPath(
         clipper: ArcClipper(),
-        child: Image.asset(
-          imageUrl,
+        child: CachedNetworkImage(
+          imageUrl: (imageUrl != null)? "https://image.tmdb.org/t/p/w500/$imageUrl": '',
           width: screenWidth,
           height: 230.0,
           fit: BoxFit.cover,
-        ));
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),);
   }
 }
 

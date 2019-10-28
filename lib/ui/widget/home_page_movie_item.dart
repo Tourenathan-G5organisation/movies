@@ -60,6 +60,6 @@ class MovieItem extends StatelessWidget {
           ],
         ),
       ),
-      onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(movie: movie,)));},);
+      onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(movieID: movie.id,)));},);
   }
 }

@@ -1,18 +1,17 @@
 import 'package:dio/dio.dart';
 
-class MovieApiService{
+class MovieApiService {
   String _apiKey = "fea5cee2ca1f5f8d6c93fa4769131cd2";
   String _baseUrl = "https://api.themoviedb.org/3/";
   final Dio _dio = Dio();
   String _errorMsg = "No internet connection.";
 
-  MovieApiService(){
-   // Set default configs
+  MovieApiService() {
+    // Set default configs
     _dio.options.baseUrl = _baseUrl;
     _dio.options.connectTimeout = 5000; //5s
     _dio.options.receiveTimeout = 3000; //3s
   }
-
 
   /// Get the top rated movies from theMovieDB api
   Future<ApiResponse> getTopRatedMovies(int page) async {
@@ -23,12 +22,10 @@ class MovieApiService{
         "language": "en-US"
       });
       print(response.data.toString());
-      return ApiResponse(
-          results: response.data, error: "", hasResponse: true);
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
     } on DioError catch (e) {
       print("An error occured");
-      return ApiResponse(
-          results: null, error: _errorMsg, hasResponse: false);
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
     }
   }
 
@@ -41,15 +38,12 @@ class MovieApiService{
         "language": "en-US"
       });
       print(response.data.toString());
-      return ApiResponse(
-          results: response.data, error: "", hasResponse: true);
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
     } on DioError catch (e) {
       print("An error occured on getting popular movies");
-      return ApiResponse(
-          results: null, error: _errorMsg, hasResponse: false);
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
     }
   }
-
 
   /// Get the now playing movies from theMovieDB api
   Future<ApiResponse> getNowPlayingMovies(int page) async {
@@ -60,21 +54,31 @@ class MovieApiService{
         "language": "en-US"
       });
       print(response.data.toString());
-      return ApiResponse(
-          results: response.data, error: "", hasResponse: true);
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
     } on DioError catch (e) {
       print("An error occured");
-      return ApiResponse(
-          results: null, error: _errorMsg, hasResponse: false);
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
     }
   }
 
+  /// Get the movie details from theMovieDb api
+  Future<ApiResponse> getMovieDetails(int movieID) async {
+    try {
+      Response response = await _dio.get("movie/$movieID",
+          queryParameters: {"api_key": _apiKey, "language": "en-US"});
+      print(response.data.toString());
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured on getting the details");
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
+    }
+  }
 }
-
 
 class ApiResponse {
   final Map<String, dynamic> results;
   final String error;
   bool hasResponse;
+
   ApiResponse({this.results, this.error, this.hasResponse});
 }

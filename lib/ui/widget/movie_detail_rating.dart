@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class Rating extends StatelessWidget {
   Rating({this.rating, this.starRating});
 
   final double rating;
-  final int starRating;
+  final double starRating;
 
   Widget _buildRatingBar(ThemeData theme) {
     var stars = <Widget>[];
 
-    for (var i = 1; i <= 5; i++) {
-      var color = i <= starRating ? theme.accentColor : Colors.black12;
-      var star = Icon(
-        Icons.star,
-        color: color,
-      );
+      return FlutterRatingBar(
+      itemCount: 5,
+      initialRating: starRating,
+      fillColor: theme.accentColor,
+      borderColor: Colors.black26,
+      allowHalfRating: true,
+      ignoreGestures: true,
+      itemSize: 24,
 
-      stars.add(star);
-    }
-
-    return Row(children: stars);
+    );
   }
 
   @override

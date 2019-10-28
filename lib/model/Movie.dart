@@ -19,7 +19,7 @@ class Movie {
   final String posterUrl;
   final String title;
   final double rating;
-  final int starRating;
+  final double starRating;
   final List<String> categories;
   final String storyline;
   final List<String> photoUrls;
@@ -29,11 +29,11 @@ class Movie {
       : id = data['id'],
         title = data['title'],
         rating = data['vote_average'].toDouble(),
-        storyline = data['"overview'],
+        storyline = data['overview'],
         bannerUrl = data['backdrop_path'],
         posterUrl = /*'asset/images/poster.jpg',*/ data['poster_path'],
-        starRating = 0,
-        categories = null,
+        starRating = (data['vote_average'] != null)? (data['vote_average'].toDouble()/2) : 0,
+        categories = (data['genres'] !=null)?(data['genres'] as List).map((item) => item["name"]).toList().cast<String>() : null,
         photoUrls = null,
         actors = null;
 }

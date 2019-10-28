@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Poster extends StatelessWidget {
   static const POSTER_RATIO = 0.7;
@@ -17,11 +18,12 @@ class Poster extends StatelessWidget {
     return Material(
       elevation: 2.0,
       borderRadius: BorderRadius.circular(4.0),
-      child: Image.asset(
-        posterUrl,
+      child: CachedNetworkImage(
+        imageUrl: (posterUrl != null)? "https://image.tmdb.org/t/p/w500/$posterUrl": '',
         width: width,
         height: height,
         fit: BoxFit.cover,
+        errorWidget: (context, url, error) => Icon(Icons.error),
       ),
     );
   }
