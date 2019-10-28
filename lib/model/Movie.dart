@@ -31,7 +31,7 @@ class Movie {
         rating = data['vote_average'].toDouble(),
         storyline = data['"overview'],
         bannerUrl = data['backdrop_path'],
-        posterUrl = 'asset/images/poster.jpg',//data['poster_path'],
+        posterUrl = /*'asset/images/poster.jpg',*/ data['poster_path'],
         starRating = 0,
         categories = null,
         photoUrls = null,

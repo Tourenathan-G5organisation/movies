@@ -42,18 +42,29 @@ class NowPlayingMovieCategory extends StatelessWidget {
           SizedBox.fromSize(
             size: const Size.fromHeight(260.0),
             child: Consumer<NowPlayingMovies>(
-              builder: (context, nowPlayingMovies, _) => ListView.builder(
-                    itemCount: nowPlayingMovies.movies.length,
-                    controller: _scrollController,
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.only(top: 8.0, left: 10.0),
-                    itemBuilder: ((context, i) {
+              builder: (context, nowPlayingMovies, _) {
+                if(nowPlayingMovies.movies.isEmpty ){
+                  return  nowPlayingMovies.isLoading()?
+                  Center(child: CircularProgressIndicator()) : Center(
+                      child: Padding(padding: EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Text("No Item available. Check your internet connection", style: TextStyle(color: Colors.black),)));
+                }
+                return ListView.builder(
+                  itemCount: nowPlayingMovies.movies.length,
+                  controller: _scrollController,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.only(top: 8.0, left: 10.0),
+                  itemBuilder: ((context, i) {
+                    if(nowPlayingMovies.isLoading() && nowPlayingMovies.movies.length-1 == i){
+                      return Center(child: CircularProgressIndicator());
+                    }else{
                       return MovieItem(
                         movie: nowPlayingMovies.movies[i],
                         height: 200.0,
                       );
-                    }),
-                  ),
+                    }
+                  }),
+                );}
             ),
           ),
         ],

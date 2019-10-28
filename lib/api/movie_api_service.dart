@@ -32,7 +32,45 @@ class MovieApiService{
     }
   }
 
+  /// Get the most popular movies from theMovieDB api
+  Future<ApiResponse> getPopularMovies(int page) async {
+    try {
+      Response response = await _dio.get("movie/popular", queryParameters: {
+        "api_key": _apiKey,
+        "page": page,
+        "language": "en-US"
+      });
+      print(response.data.toString());
+      return ApiResponse(
+          results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured on getting popular movies");
+      return ApiResponse(
+          results: null, error: _errorMsg, hasResponse: false);
+    }
+  }
+
+
+  /// Get the now playing movies from theMovieDB api
+  Future<ApiResponse> getNowPlayingMovies(int page) async {
+    try {
+      Response response = await _dio.get("movie/now_playing", queryParameters: {
+        "api_key": _apiKey,
+        "page": page,
+        "language": "en-US"
+      });
+      print(response.data.toString());
+      return ApiResponse(
+          results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured");
+      return ApiResponse(
+          results: null, error: _errorMsg, hasResponse: false);
+    }
+  }
+
 }
+
 
 class ApiResponse {
   final Map<String, dynamic> results;

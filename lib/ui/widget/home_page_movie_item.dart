@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/model/Movie.dart';
 import 'package:movies/ui/detailpage.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class MovieItem extends StatelessWidget {
   MovieItem({Key key, this.movie, this.height}) : super(key: key);
@@ -20,11 +21,12 @@ class MovieItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(4.0),
-              child: Image.asset(
-                movie.posterUrl,
+              child: CachedNetworkImage(
+                imageUrl: (movie.posterUrl != null)? "https://image.tmdb.org/t/p/w500/"+movie.posterUrl: '',
                 width: width,
                 height: height,
                 fit: BoxFit.cover,
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
             SizedBox(

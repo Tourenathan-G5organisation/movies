@@ -17,8 +17,7 @@ class PopularMovieCategory extends StatelessWidget {
     _scrollController =
         ScrollController(initialScrollOffset: 0.0, keepScrollOffset: true);
     _scrollController.addListener(() {
-      if (_scrollController.offset ==
-          _scrollController.position.maxScrollExtent) {
+      if (_scrollController.offset == _scrollController.position.maxScrollExtent) {
         popularMovies.getMoreMovies();
       }
     });
@@ -40,18 +39,29 @@ class PopularMovieCategory extends StatelessWidget {
           SizedBox.fromSize(
             size: const Size.fromHeight(260.0),
             child: Consumer<PopularMovies>(
-              builder: (context, popularMovies, _) => ListView.builder(
-                    itemCount: popularMovies.movies.length,
-                    controller: _scrollController,
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.only(top: 8.0, left: 10.0),
-                    itemBuilder: ((context, i) {
+              builder: (context, popularMovies, _) {
+                if(popularMovies.movies.isEmpty ){
+                  return  popularMovies.isLoading()?
+                  Center(child: CircularProgressIndicator()) : Center(
+                      child: Padding(padding: EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Text("No Item available. Check your internet connection", style: TextStyle(color: Colors.black),)));
+                }
+                return ListView.builder(
+                  itemCount: popularMovies.movies.length,
+                  controller: _scrollController,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.only(top: 8.0, left: 10.0),
+                  itemBuilder: ((context, i) {
+                    if(popularMovies.isLoading() && popularMovies.movies.length-1 == i){
+                      return Center(child: CircularProgressIndicator());
+                    }else{
                       return MovieItem(
                         movie: popularMovies.movies[i],
                         height: 200.0,
                       );
-                    }),
-                  ),
+                    }
+                  }),
+                );}
             ),
           ),
         ],
