@@ -22,7 +22,7 @@ class Movie {
   final double starRating;
   final List<String> categories;
   final String storyline;
-  final List<String> photoUrls;
+  List<String> photoUrls;
   final List<Actor> actors;
 
   Movie.fromJson(Map<String, dynamic> data)

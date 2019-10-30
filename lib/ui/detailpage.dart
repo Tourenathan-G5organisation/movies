@@ -31,10 +31,10 @@ class DetailPage extends StatelessWidget {
               padding: EdgeInsets.all(20.0),
               child: Storyline(movieState.movie.storyline),
             ),
-            /*PhotoScroller(movieState.movie.photoUrls),
-              SizedBox(height: 20.0),
-              ActorScroller(movieState.movie.actors),*/
+            PhotoScroller(movieState.movie.photoUrls),
             SizedBox(height: 20.0),
+            //ActorScroller(movieState.movie.actors),
+            //SizedBox(height: 20.0),
           ],
         ));
       }),

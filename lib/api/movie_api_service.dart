@@ -73,6 +73,43 @@ class MovieApiService {
       return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
     }
   }
+
+  /// Get the movie images from theMovieDb api
+  Future<ApiResponse> getMovieImages(int movieID) async {
+    try {
+      Response response = await _dio.get("movie/$movieID/images",
+          queryParameters: {"api_key": _apiKey, "include_image_language": "en,null"});
+      print(response.data.toString());
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured on getting the movie images");
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
+    }
+  }
+
+  /// Get the movie actors from theMovieDb api
+  Future<ApiResponse> getMovieActors(int movieID) async {
+    try {
+      Response response = await _dio.get("movie/$movieID/credits",
+          queryParameters: {"api_key": _apiKey});
+      print(response.data.toString());
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured on getting the movie actors");
+    return ApiResponse(results: null, error: _errorMsg, hasResponse: false);}
+  }
+
+  /// Get the movie vidoes from theMovieDb api
+  Future<ApiResponse> getMovieVideo(int movieID) async {
+    try {
+      Response response = await _dio.get("movie/$movieID/videos",
+          queryParameters: {"api_key": _apiKey, "language": "en-US"});
+      print(response.data.toString());
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured on getting the movie actors");
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);}
+  }
 }
 
 class ApiResponse {

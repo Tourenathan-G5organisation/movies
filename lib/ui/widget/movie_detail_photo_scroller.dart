@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class PhotoScroller extends StatelessWidget {
   PhotoScroller(this.photoUrls);
@@ -8,6 +9,7 @@ class PhotoScroller extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
+    if(photoUrls != null){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,7 +29,8 @@ class PhotoScroller extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8.0, left: 20.0)),
         ),
       ],
-    );
+    );}
+    return Container(width: 0.0, height: 0.0,);
   }
 
   Widget _buildPhoto(BuildContext context, int index) {
@@ -37,10 +40,10 @@ class PhotoScroller extends StatelessWidget {
       padding: const EdgeInsets.only(right: 16.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(4.0),
-        child: Image.asset(
-          photo,
-          width: 160.0,
-          height: 120.0,
+        child: CachedNetworkImage(
+          imageUrl: photo,
+          width: 177.0,
+          height: 100.0,
           fit: BoxFit.cover,
         ),
       ),

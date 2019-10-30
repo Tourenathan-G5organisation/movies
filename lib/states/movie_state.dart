@@ -18,7 +18,7 @@ class MovieState with ChangeNotifier {
 
   Movie get movie => _movie;
 
-  set movies(Movie newMovie) {
+  set movie(Movie newMovie) {
     _movie = newMovie;
     notifyListeners();
   }
@@ -30,12 +30,23 @@ class MovieState with ChangeNotifier {
       ApiResponse response = await _movieApiService.getMovieDetails(movieID);
       _isLoading = false;
       if (response.hasResponse) {
-        movies = Movie.fromJson(response.results);
-
+        movie = Movie.fromJson(response.results);
+        getMovieImages(movieID);
       } else {
         //if (movies.length == 0) {}
         notifyListeners();
       }
+  }
+
+  void getMovieImages(int movieID) async{
+    ApiResponse response = await _movieApiService.getMovieImages(movieID);
+    if (response.hasResponse) {
+      if(response.results['backdrops'] !=null){
+       List<String> photoUrl =  (response.results['backdrops'] as List).map((item) => "https://image.tmdb.org/t/p/w500/"+item['file_path']).toList().cast<String>();
+       movie.photoUrls = photoUrl;
+       notifyListeners();
+      }
+    }
   }
 
 }
