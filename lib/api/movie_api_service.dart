@@ -110,6 +110,54 @@ class MovieApiService {
       print("An error occured on getting the movie actors");
       return ApiResponse(results: null, error: _errorMsg, hasResponse: false);}
   }
+
+  /// Get the top rated TV programs from theMovieDB api
+  Future<ApiResponse> getTopRatedTV(int page) async {
+    try {
+      Response response = await _dio.get("tv/top_rated", queryParameters: {
+        "api_key": _apiKey,
+        "page": page,
+        "language": "en-US"
+      });
+      print(response.data.toString());
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured");
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
+    }
+  }
+
+  /// Get the popular TV programs from theMovieDB api
+  Future<ApiResponse> getPopularTV(int page) async {
+    try {
+      Response response = await _dio.get("tv/popular", queryParameters: {
+        "api_key": _apiKey,
+        "page": page,
+        "language": "en-US"
+      });
+      print(response.data.toString());
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured");
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
+    }
+  }
+
+  /// Get the "On the Air" TV programs from theMovieDB api
+  Future<ApiResponse> getOnTheAirTV(int page) async {
+    try {
+      Response response = await _dio.get("tv/on_the_air", queryParameters: {
+        "api_key": _apiKey,
+        "page": page,
+        "language": "en-US"
+      });
+      print(response.data.toString());
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured");
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
+    }
+  }
 }
 
 class ApiResponse {

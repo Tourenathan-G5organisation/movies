@@ -27,6 +27,12 @@ class MoviesContent extends StatelessWidget {
     child:
         Column(
           children: [
+            PopularMovieCategory(
+              categoryTitle: "Popular",
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
             TopRatedMovieCategory(
               categoryTitle: "Top rated",
             ),
@@ -35,12 +41,6 @@ class MoviesContent extends StatelessWidget {
             ),
             NowPlayingMovieCategory(
               categoryTitle: "Now playing",
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            PopularMovieCategory(
-              categoryTitle: "Popular",
             ),
             SizedBox(
               height: 10.0,
