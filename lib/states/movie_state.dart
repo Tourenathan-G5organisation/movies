@@ -32,6 +32,7 @@ class MovieState with ChangeNotifier {
       if (response.hasResponse) {
         movie = Movie.fromJson(response.results);
         getMovieImages(movieID);
+        getMovieActors(movieID);
       } else {
         //if (movies.length == 0) {}
         notifyListeners();
@@ -45,6 +46,16 @@ class MovieState with ChangeNotifier {
        List<String> photoUrl =  (response.results['backdrops'] as List).map((item) => "https://image.tmdb.org/t/p/w500/"+item['file_path']).toList().cast<String>();
        movie.photoUrls = photoUrl;
        notifyListeners();
+      }
+    }
+  }
+
+  void getMovieActors(int movieID) async{
+    ApiResponse response = await _movieApiService.getMovieActors(movieID);
+    if (response.hasResponse) {
+      if(response.results['cast'] != null){
+        movie.actors =  (response.results['cast'] as List).map((item) => Actor(name: item['name'], avatarUrl: (item['profile_path']!=null)?"https://image.tmdb.org/t/p/w500/"+item['profile_path']:null)).toList();
+        notifyListeners();
       }
     }
   }

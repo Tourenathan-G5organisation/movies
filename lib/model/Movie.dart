@@ -23,7 +23,7 @@ class Movie {
   final List<String> categories;
   final String storyline;
   List<String> photoUrls;
-  final List<Actor> actors;
+  List<Actor> actors;
 
   Movie.fromJson(Map<String, dynamic> data)
       : id = data['id'],

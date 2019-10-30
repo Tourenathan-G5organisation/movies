@@ -33,8 +33,8 @@ class DetailPage extends StatelessWidget {
             ),
             PhotoScroller(movieState.movie.photoUrls),
             SizedBox(height: 20.0),
-            //ActorScroller(movieState.movie.actors),
-            //SizedBox(height: 20.0),
+            ActorScroller(movieState.movie.actors),
+            SizedBox(height: 20.0),
           ],
         ));
       }),
