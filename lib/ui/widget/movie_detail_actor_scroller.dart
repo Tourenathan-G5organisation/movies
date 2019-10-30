@@ -15,7 +15,7 @@ class ActorScroller extends StatelessWidget {
         child: Column(
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(actor.avatarUrl),
+              backgroundImage: CachedNetworkImageProvider(actor.avatarUrl),
               radius: 40.0,
             ),
             Padding(
