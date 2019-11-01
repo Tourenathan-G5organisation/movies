@@ -18,14 +18,7 @@ class TvContent extends StatelessWidget {
       child: Container(
         color: Colors.grey[100],
         // alignment: Alignment.center,
-        child: /*MultiProvider(
-        providers: [
-          ChangeNotifierProvider(builder: (context) => TopRatedTv(context)),
-          ChangeNotifierProvider(builder: (context) => PopularTv(context)),
-          ChangeNotifierProvider(builder: (context) => OnTheAirTv(context)),
-    ],
-    child:*/
-        Column(
+        child: Column(
           children: [
             PopularTvCategory(),
             SizedBox(
