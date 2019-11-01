@@ -22,7 +22,7 @@ class MovieItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(4.0),
               child: CachedNetworkImage(
-                imageUrl: (movie.posterUrl != null)? "https://image.tmdb.org/t/p/w500/"+movie.posterUrl: '',
+                imageUrl: movie.posterUrl,
                 width: width,
                 height: height,
                 fit: BoxFit.cover,
@@ -60,6 +60,6 @@ class MovieItem extends StatelessWidget {
           ],
         ),
       ),
-      onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(movieID: movie.id,)));},);
+      onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(itemId: movie.id, type: 1,)));},); //1=movie type
   }
 }

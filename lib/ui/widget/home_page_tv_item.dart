@@ -22,7 +22,7 @@ class TvItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(4.0),
               child: CachedNetworkImage(
-                imageUrl: (TV.posterUrl != null)? "https://image.tmdb.org/t/p/w500/"+TV.posterUrl: '',
+                imageUrl: TV.posterUrl,
                 width: width,
                 height: height,
                 fit: BoxFit.cover,
@@ -60,6 +60,6 @@ class TvItem extends StatelessWidget {
           ],
         ),
       ),
-      onTap: (){},);
+      onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(itemId: TV.id, type: 2,)));},);
   }
 }

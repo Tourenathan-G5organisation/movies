@@ -175,6 +175,19 @@ class MovieApiService {
     }
   }
 
+  /// Get the TV program details from theMovieDb api
+  Future<ApiResponse> getTvDetails(int tvID) async {
+    try {
+      Response response = await _dio.get("tv/$tvID",
+          queryParameters: {"api_key": _apiKey, "language": "en-US"});
+      print(response.data.toString());
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured on getting the details");
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
+    }
+  }
+
 }
 
 class ApiResponse {

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'movie_detail_arc_banner_image.dart';
-import 'package:movies/model/Movie.dart';
+import 'package:movies/model/Tv.dart';
 import 'movie_detail_poster.dart';
 import 'movie_detail_header_text.dart';
 
-class MovieDetailHeader extends StatelessWidget{
+class TvDetailHeader extends StatelessWidget{
 
-  MovieDetailHeader(this.movie);
-  final Movie movie;
+  TvDetailHeader(this.tv);
+
+  final Tv tv;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class MovieDetailHeader extends StatelessWidget{
     return Stack(
       children: <Widget>[
         Padding(
-          child: ArcBannerImage(movie.bannerUrl),
+          child: ArcBannerImage(tv.bannerUrl),
           padding: const EdgeInsets.only(bottom: 140.0),
         ),
         Positioned(
@@ -27,9 +28,9 @@ class MovieDetailHeader extends StatelessWidget{
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Poster(movie.posterUrl, height: 180.0),
+              Poster(tv.posterUrl, height: 180.0),
               SizedBox(width: 16.0),
-              Expanded(child: HeaderText(title: movie.title, rating: movie.rating, starRating: movie.starRating, categories: movie.categories,))
+              Expanded(child: HeaderText(title: tv.title, rating: tv.rating, starRating: tv.starRating, categories: tv.categories,))
             ],
           ),
         )

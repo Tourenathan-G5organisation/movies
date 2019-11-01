@@ -7,7 +7,6 @@ class Storyline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     var textTheme = Theme.of(context).textTheme;
     if(storyline != null) {
       return Column(
@@ -25,22 +24,6 @@ class Storyline extends StatelessWidget {
               fontSize: 17.0,
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                'more',
-                style: textTheme.body1
-                    .copyWith(fontSize: 16.0, color: theme.accentColor),
-              ),
-              Icon(
-                Icons.keyboard_arrow_down,
-                size: 18.0,
-                color: theme.accentColor,
-              ),
-            ],
-          )
         ],
       );
     }

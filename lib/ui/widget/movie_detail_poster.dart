@@ -19,7 +19,7 @@ class Poster extends StatelessWidget {
       elevation: 2.0,
       borderRadius: BorderRadius.circular(4.0),
       child: CachedNetworkImage(
-        imageUrl: (posterUrl != null)? "https://image.tmdb.org/t/p/w500/$posterUrl": '',
+        imageUrl: posterUrl,
         width: width,
         height: height,
         fit: BoxFit.cover,
