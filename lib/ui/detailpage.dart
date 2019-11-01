@@ -37,7 +37,7 @@ class DetailPage extends StatelessWidget {
               ),
               PhotoScroller(movieState.movie.photoUrls),
               SizedBox(height: 20.0),
-              ActorScroller(movieState.movie.actors),
+              ActorScroller(movieState.movie.actors, 'Actors'),
               SizedBox(height: 20.0),
             ],
           ));
@@ -61,7 +61,11 @@ class DetailPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(20.0),
                       child: Storyline(tvState.tv.storyline),
-                    ),]));
+                    ),
+                    SizedBox(height: 20.0),
+                    ActorScroller(tvState.tv.createdBy, "Created by"),
+                    SizedBox(height: 20.0),
+                    ]));
               })));
     } else if (type == 3) {
     } else

@@ -4,8 +4,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class ActorScroller extends StatelessWidget {
 
-  ActorScroller(this.actors);
+  ActorScroller(this.actors, this.title);
   final List<Actor> actors;
+  final String title;
 
   Widget _buildActor(BuildContext ctx, int index) {
     var actor = actors[index];
@@ -47,14 +48,14 @@ class ActorScroller extends StatelessWidget {
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
 
-    if(actors != null) {
+    if(actors != null && !actors.isEmpty) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
-              'Actors',
+              title,
               style: textTheme.subhead.copyWith(fontSize: 18.0),
             ),
           ),

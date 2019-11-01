@@ -12,6 +12,7 @@ class Tv {
     this.storyline,
     this.photoUrls,
     this.actors,
+    this.createdBy,
   });
 
   final int id;
@@ -24,6 +25,7 @@ class Tv {
   final String storyline;
   List<String> photoUrls;
   List<Actor> actors;
+  List<Actor> createdBy;
 
   Tv.fromJson(Map<String, dynamic> data)
       : id = data['id'],
@@ -35,5 +37,6 @@ class Tv {
         starRating = (data['vote_average'] != null)? (data['vote_average'].toDouble()/2) : 0,
         categories = (data['genres'] !=null)?(data['genres'] as List).map((item) => item["name"]).toList().cast<String>() : null,
         photoUrls = null,
-        actors = null;
+        actors = null,
+  createdBy = (data['created_by'] != null)? (data['created_by'] as List).map((item) => Actor(name: item["name"], avatarUrl: (item["profile_path"]!=null)?"https://image.tmdb.org/t/p/w500/"+item["profile_path"]: '')).toList().cast<Actor>(): null;
 }
