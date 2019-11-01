@@ -20,9 +20,7 @@ class PeopleItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(4.0),
               child: CachedNetworkImage(
-                imageUrl: (person.url != null)
-                    ? "https://image.tmdb.org/t/p/w500/" + person.url
-                    : '',
+                imageUrl: person.url,
                  /*width: 220,
                 height: 260,*/
                 fit: BoxFit.cover,
