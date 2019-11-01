@@ -18,13 +18,13 @@ class MoviesContent extends StatelessWidget {
       child: Container(
         color: Colors.grey[100],
         // alignment: Alignment.center,
-        child: MultiProvider(
+        child: /*MultiProvider(
         providers: [
           ChangeNotifierProvider(builder: (context) => TopRatedMovies(context)),
           ChangeNotifierProvider(builder: (context) => NowPlayingMovies(context)),
           ChangeNotifierProvider(builder: (context) => PopularMovies(context)),
     ],
-    child:
+    child:*/
         Column(
           children: [
             PopularMovieCategory(
@@ -46,7 +46,7 @@ class MoviesContent extends StatelessWidget {
               height: 10.0,
             ),
           ],
-        ),),
+        ),//),
       ),
     );
   }

@@ -4,15 +4,15 @@ import 'package:movies/ui/detailpage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class PeopleItem extends StatelessWidget {
-  PeopleItem({Key key, this.person, this.height}) : super(key: key);
+  PeopleItem({Key key, this.person,}) : super(key: key);
   final Person person;
-  final double height;
+  //final double height;
   static const POSTER_RATIO = 0.7;
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var width = POSTER_RATIO * height;
+    //var width = POSTER_RATIO * height;
     return GestureDetector(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,8 +23,8 @@ class PeopleItem extends StatelessWidget {
                 imageUrl: (person.url != null)
                     ? "https://image.tmdb.org/t/p/w500/" + person.url
                     : '',
-               /* width: width,
-                height: height,*/
+                 /*width: 220,
+                height: 260,*/
                 fit: BoxFit.cover,
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),

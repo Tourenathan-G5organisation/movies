@@ -18,13 +18,13 @@ class TvContent extends StatelessWidget {
       child: Container(
         color: Colors.grey[100],
         // alignment: Alignment.center,
-        child: MultiProvider(
+        child: /*MultiProvider(
         providers: [
           ChangeNotifierProvider(builder: (context) => TopRatedTv(context)),
           ChangeNotifierProvider(builder: (context) => PopularTv(context)),
           ChangeNotifierProvider(builder: (context) => OnTheAirTv(context)),
     ],
-    child:
+    child:*/
         Column(
           children: [
             PopularTvCategory(),
@@ -40,7 +40,7 @@ class TvContent extends StatelessWidget {
               height: 10.0,
             ),
           ],
-        ),),
+        ),//),
       ),
     );
   }

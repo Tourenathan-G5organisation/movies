@@ -26,7 +26,7 @@ class PeopleContent extends StatelessWidget {
     });
     return Container(
       color: Colors.grey[100],
-      // alignment: Alignment.center,
+      alignment: Alignment.center,
       child: Consumer<PopularPeople>(builder: (context, people, _) {
         if(people.people.isEmpty ){
           return  people.isLoading()?
@@ -34,19 +34,25 @@ class PeopleContent extends StatelessWidget {
               child: Padding(padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text("No Item available. Check your internet connection", style: TextStyle(color: Colors.black),)));
         }
-        return GridView.count(
-          shrinkWrap: true,
-          crossAxisCount: 2,
-          childAspectRatio: 0.6,
-          crossAxisSpacing: 2.0,
-          mainAxisSpacing: 0.0,
-          controller: _scrollController,
-          children: List.generate(people.people.length, (index) {
-            return PeopleItem(
-              person: people.people[index], height: 250,
-            );
-          }),
-        );
+        return OrientationBuilder(builder: (context, orientation){
+          return GridView.count(
+            shrinkWrap: true,
+            crossAxisCount: orientation == Orientation.portrait? 2 : 3,
+            childAspectRatio: 0.564,
+            crossAxisSpacing: 2.0,
+            mainAxisSpacing: 0.0,
+            controller: _scrollController,
+            children: List.generate(people.people.length, (index) {
+              if(people.isLoading() && people.people.length-1 == index){
+                return Center(child: CircularProgressIndicator());
+              }else {
+                return PeopleItem(
+                  person: people.people[index],
+                );
+              }
+            }),
+          );
+        });
       }),
     );
   }
