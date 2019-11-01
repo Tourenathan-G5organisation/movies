@@ -1,41 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:movies/model/Tv.dart';
+import 'package:movies/model/Person.dart';
 import 'package:movies/api/movie_api_service.dart';
 
-class TopRatedTv with ChangeNotifier {
-  List<Tv> _tv; // List of TVs to display
+class PopularPeople with ChangeNotifier {
+  List<Person> _people; // List of TVs to display
   bool _isLoading = true; // determines if the we are loading movies or not
   BuildContext _context;
   int _page = 0;
   int _maxPage = 1;
   MovieApiService _movieApiService;
 
-  TopRatedTv(this._context) {
-    _tv = [];
+  PopularPeople(this._context) {
+    _people = [];
     _movieApiService = MovieApiService();
-    getMoreMovies();
+    getMorePeople();
   }
 
-  List<Tv> get tv => _tv;
+  List<Person> get people => _people;
 
-  set tv(List<Tv> newTv) {
-    _tv.addAll(newTv);
+  set people(List<Person> newPeople) {
+    _people.addAll(newPeople);
     notifyListeners();
   }
 
-  void getMoreMovies() async {
+  void getMorePeople() async {
     if (_page < _maxPage) {
       _page++;
       _isLoading = true;
       notifyListeners();
-      ApiResponse response = await _movieApiService.getTopRatedTV(_page);
+      ApiResponse response = await _movieApiService.getPopularPeople(_page);
       print(response.toString());
       _isLoading = false;
       if (response.hasResponse) {
         _maxPage = response.results["total_pages"] ?? _maxPage;
-        List<Tv> loadedTV = (response.results["results"] as List).map((item) => Tv.fromJson(item)).toList();
-        tv = loadedTV;
+        List<Person> loadedPeople = (response.results["results"] as List).map((item) => Person.fromJson(item)).toList();
+        people = loadedPeople;
       } else {
         //if (movies.length == 0) {}
         notifyListeners();

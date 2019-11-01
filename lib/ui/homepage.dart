@@ -5,6 +5,9 @@ import 'package:movies/ui/widget/home_page_movies_content.dart';
 import 'package:movies/ui/widget/home_page_tv_content.dart';
 import 'presentation/my_flutter_app_icons.dart';
 import 'package:movies/ui/widget/home_page_data_search.dart';
+import 'package:movies/ui/widget/home_page_people_content.dart';
+import 'package:provider/provider.dart';
+import 'package:movies/states/popular_people.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -42,19 +45,19 @@ class _HomePageState extends State<HomePage> {
         body: TabBarView(
           children: [
             MoviesContent(),
-           TvContent(),
+            TvContent(),
             MoviesContent(),
-            Container(
-              child: Center(child: Text('Popular actors will appear here', style: Theme.of(context).textTheme.display1.copyWith(fontSize: 20.0, color: Colors.white),),),
-              color: Colors.black,
-            ),
+            //Container(),
+            ChangeNotifierProvider(
+                builder: (context) => PopularPeople(context),
+                child: PeopleContent()),
           ],
           physics: NeverScrollableScrollPhysics(),
         ),
         bottomNavigationBar: TabBar(
           tabs: [
             Tab(
-              icon: Icon( MyFlutterApp.film),
+              icon: Icon(MyFlutterApp.film),
             ),
             Tab(
               icon: Icon(MyFlutterApp.television),
@@ -63,7 +66,10 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(MyFlutterApp.videocam),
             ),
             Tab(
-              icon: Icon(Icons.person_outline, size: 30,),
+              icon: Icon(
+                Icons.person_outline,
+                size: 30,
+              ),
             ),
           ],
           labelColor: Colors.red[800],
@@ -77,5 +83,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }
