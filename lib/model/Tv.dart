@@ -13,6 +13,9 @@ class Tv {
     this.photoUrls,
     this.actors,
     this.createdBy,
+    this.seasonCount,
+    this.episodeCount,
+    this.firstAirDate,
   });
 
   final int id;
@@ -26,17 +29,44 @@ class Tv {
   List<String> photoUrls;
   List<Actor> actors;
   List<Actor> createdBy;
+  final int seasonCount;
+  final int episodeCount;
+  final String firstAirDate;
 
   Tv.fromJson(Map<String, dynamic> data)
       : id = data['id'],
         title = data['name'],
         rating = data['vote_average'].toDouble(),
         storyline = data['overview'],
-        bannerUrl = (data['backdrop_path'] != null)? "https://image.tmdb.org/t/p/w500/"+data['backdrop_path']: '',
-        posterUrl = (data['poster_path'] != null)? "https://image.tmdb.org/t/p/w500/"+data['poster_path'] : '',
-        starRating = (data['vote_average'] != null)? (data['vote_average'].toDouble()/2) : 0,
-        categories = (data['genres'] !=null)?(data['genres'] as List).map((item) => item["name"]).toList().cast<String>() : null,
+        bannerUrl = (data['backdrop_path'] != null)
+            ? "https://image.tmdb.org/t/p/w500/" + data['backdrop_path']
+            : '',
+        posterUrl = (data['poster_path'] != null)
+            ? "https://image.tmdb.org/t/p/w500/" + data['poster_path']
+            : '',
+        starRating = (data['vote_average'] != null)
+            ? (data['vote_average'].toDouble() / 2)
+            : 0,
+        categories = (data['genres'] != null)
+            ? (data['genres'] as List)
+                .map((item) => item["name"])
+                .toList()
+                .cast<String>()
+            : null,
         photoUrls = null,
         actors = null,
-  createdBy = (data['created_by'] != null)? (data['created_by'] as List).map((item) => Actor(name: item["name"], avatarUrl: (item["profile_path"]!=null)?"https://image.tmdb.org/t/p/w500/"+item["profile_path"]: '')).toList().cast<Actor>(): null;
+        createdBy = (data['created_by'] != null)
+            ? (data['created_by'] as List)
+                .map((item) => Actor(
+                    name: item["name"],
+                    avatarUrl: (item["profile_path"] != null)
+                        ? "https://image.tmdb.org/t/p/w500/" +
+                            item["profile_path"]
+                        : ''))
+                .toList()
+                .cast<Actor>()
+            : null,
+  seasonCount = data['number_of_seasons']?? 1,
+  episodeCount = data['number_of_episodes']?? 1,
+  firstAirDate = data['first_air_date'];
 }

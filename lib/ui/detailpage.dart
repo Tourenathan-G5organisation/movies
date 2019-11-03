@@ -62,12 +62,51 @@ class DetailPage extends StatelessWidget {
                       padding: EdgeInsets.all(20.0),
                       child: Storyline(tvState.tv.storyline),
                     ),
+
+                    Padding(
+                      padding: EdgeInsets.only(left: 18.0, bottom: 18),
+                      child: Column(children: [
+                        Row(children: [
+                          Text('Number of seassons:  ', style: TextStyle(fontSize: 16.0),),
+                          Text(tvState.tv.seasonCount.toString(),
+                            style: Theme.of(context).textTheme.body1.copyWith(
+                              //color: Theme.of(context).accentColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0,
+                            ),),
+                        ],
+                      ),
+                        SizedBox(height: 10.0),
+
+                        Row(children: [
+                          Text('Number of episodes:  ', style: TextStyle(fontSize: 16.0),),
+                          Text(tvState.tv.episodeCount.toString(),
+                            style: Theme.of(context).textTheme.body1.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0,
+                            ),),
+                        ],
+                        ),
+                        (tvState.tv.firstAirDate != null)?
+                        Padding(child: Row(children: [
+                          Text('First air date:  ', style: TextStyle(fontSize: 16.0),),
+                          Text(tvState.tv.firstAirDate,
+                            style: Theme.of(context).textTheme.body1.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0,
+                            ),),
+                        ],
+                        ),
+                        padding: EdgeInsets.only(top: 10.0)):Container(width: 0.0, height: 0.0,),
+                      ],),
+                    ),
                     PhotoScroller(tvState.tv.photoUrls),
                     SizedBox(height: 20.0),
                     ActorScroller(tvState.tv.createdBy, "Created by"),
                     SizedBox(height: 20.0),
                     ActorScroller(tvState.tv.actors, "Actors"),
                     SizedBox(height: 20.0),
+
                     ]));
               })));
     } else if (type == 3) {
