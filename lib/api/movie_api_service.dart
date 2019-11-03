@@ -212,6 +212,19 @@ class MovieApiService {
       return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
     }
   }
+
+  // Search for a movie from theMovieDb api
+  Future<ApiResponse> searchMovie(String searchText, int page) async {
+    try {
+      Response response = await _dio.get("search/movie",
+          queryParameters: {"api_key": _apiKey, "query": searchText, "page": page, "language": "en-US"});
+      print(response.data.toString());
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured on searching for movie");
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
+    }
+  }
 }
 
 class ApiResponse {

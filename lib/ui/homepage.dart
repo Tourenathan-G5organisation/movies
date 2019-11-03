@@ -15,6 +15,7 @@ import 'package:movies/states/now_playing_movies.dart';
 import 'package:movies/states/top_rated_tv.dart';
 import 'package:movies/states/popular_tv.dart';
 import 'package:movies/states/on_the_air_tv.dart';
+import 'package:movies/states/search_movies.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);

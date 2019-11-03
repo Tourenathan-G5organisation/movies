@@ -28,9 +28,9 @@ class Movie {
   Movie.fromJson(Map<String, dynamic> data)
       : id = data['id'],
         title = data['title'],
-        rating = data['vote_average'].toDouble(),
+        rating = (data['vote_average'] != null)?data['vote_average'].toDouble(): 0,
         storyline = data['overview'],
-        bannerUrl =  (data['backdrop_path'] != null)? "https://image.tmdb.org/t/p/w500/"+data['backdrop_path']: '',
+        bannerUrl =  (data['backdrop_path'] != null)? "https://image.tmdb.org/t/p/w500/"+data['backdrop_path']: null,
         posterUrl =  (data['poster_path'] != null)?  "https://image.tmdb.org/t/p/w500/"+data['poster_path']: '',
         starRating = (data['vote_average'] != null)? (data['vote_average'].toDouble()/2) : 0,
         categories = (data['genres'] !=null)?(data['genres'] as List).map((item) => item["name"]).toList().cast<String>() : null,

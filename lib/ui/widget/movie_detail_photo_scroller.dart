@@ -10,7 +10,7 @@ class PhotoScroller extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-    if (photoUrls != null) {
+    if (photoUrls != null && photoUrls.isNotEmpty) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
