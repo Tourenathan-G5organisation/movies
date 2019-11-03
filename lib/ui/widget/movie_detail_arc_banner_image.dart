@@ -11,14 +11,23 @@ class ArcBannerImage extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return ClipPath(
-        clipper: ArcClipper(),
-        child: CachedNetworkImage(
-          imageUrl: imageUrl,
-          width: screenWidth,
-          height: 230.0,
-          fit: BoxFit.cover,
-          errorWidget: (context, url, error) => Icon(Icons.error),
-        ),);
+      clipper: ArcClipper(),
+      child: (imageUrl != null)
+          ? CachedNetworkImage(
+              imageUrl: imageUrl,
+              width: screenWidth,
+              height: 230.0,
+              fit: BoxFit.cover,
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            )
+          : Image.asset(
+              'asset/images/backdrop.jpg',
+              width: screenWidth,
+              height: 230.0,
+              fit: BoxFit.cover,
+              //errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
+    );
   }
 }
 
