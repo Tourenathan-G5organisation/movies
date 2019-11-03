@@ -62,8 +62,11 @@ class DetailPage extends StatelessWidget {
                       padding: EdgeInsets.all(20.0),
                       child: Storyline(tvState.tv.storyline),
                     ),
+                    PhotoScroller(tvState.tv.photoUrls),
                     SizedBox(height: 20.0),
                     ActorScroller(tvState.tv.createdBy, "Created by"),
+                    SizedBox(height: 20.0),
+                    ActorScroller(tvState.tv.actors, "Actors"),
                     SizedBox(height: 20.0),
                     ]));
               })));

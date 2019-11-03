@@ -31,27 +31,27 @@ class TvState with ChangeNotifier {
       _isLoading = false;
       if (response.hasResponse) {
         tv = Tv.fromJson(response.results);
-        //getTvImages(movieID);
-        //getMovieActors(movieID);
+        getTvImages(tvID);
+        getTvActors(tvID);
       } else {
         //if (movies.length == 0) {}
         notifyListeners();
       }
   }
 
-  void getTvImages(int movieID) async{
-    ApiResponse response = await _movieApiService.getMovieImages(movieID);
+  void getTvImages(int tvID) async{
+    ApiResponse response = await _movieApiService.getTVImages(tvID);
     if (response.hasResponse) {
       if(response.results['backdrops'] !=null){
-       List<String> photoUrl =  (response.results['backdrops'] as List).map((item) => "https://image.tmdb.org/t/p/w500/"+item['file_path']).toList().cast<String>();
+       List<String> photoUrl =  (response.results['backdrops'] as List).map((item) => (item['file_path'] != null)? "https://image.tmdb.org/t/p/w500/"+item['file_path']:'').toList().cast<String>();
        tv.photoUrls = photoUrl;
        notifyListeners();
       }
     }
   }
 
-  void getMovieActors(int movieID) async{
-    ApiResponse response = await _movieApiService.getMovieActors(movieID);
+  void getTvActors(int tvID) async{
+    ApiResponse response = await _movieApiService.getTVActors(tvID);
     if (response.hasResponse) {
       if(response.results['cast'] != null){
         tv.actors =  (response.results['cast'] as List).map((item) => Actor(name: item['name'], avatarUrl: (item['profile_path']!=null)?"https://image.tmdb.org/t/p/w500/"+item['profile_path']:null)).toList();

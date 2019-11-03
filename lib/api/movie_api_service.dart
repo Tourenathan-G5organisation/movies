@@ -188,6 +188,30 @@ class MovieApiService {
     }
   }
 
+  /// Get the TV actors from theMovieDb api
+  Future<ApiResponse> getTVActors(int tvID) async {
+    try {
+      Response response = await _dio.get("tv/$tvID/credits",
+          queryParameters: {"api_key": _apiKey});
+      print(response.data.toString());
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured on getting the tv actors");
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);}
+  }
+
+  /// Get the TV images from theMovieDb api
+  Future<ApiResponse> getTVImages(int tvID) async {
+    try {
+      Response response = await _dio.get("tv/$tvID/images",
+          queryParameters: {"api_key": _apiKey, "include_image_language": "en,null"});
+      print(response.data.toString());
+      return ApiResponse(results: response.data, error: "", hasResponse: true);
+    } on DioError catch (e) {
+      print("An error occured on getting the tv images");
+      return ApiResponse(results: null, error: _errorMsg, hasResponse: false);
+    }
+  }
 }
 
 class ApiResponse {
