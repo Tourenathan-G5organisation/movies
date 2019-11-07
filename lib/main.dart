@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    String title = "MOVIE";
+    String title = "MOVIES";
     return MaterialApp(
       title: title,
       debugShowCheckedModeBanner: false,
